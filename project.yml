@@ -1,0 +1,37 @@
+name: Rately
+options:
+  bundleIdPrefix: app.rately
+  deploymentTarget:
+    macOS: "13.0"
+  createIntermediateGroups: true
+packages:
+  RevenueCat:
+    url: https://github.com/RevenueCat/purchases-ios
+    from: "5.0.0"
+settings:
+  base:
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    PRODUCT_BUNDLE_IDENTIFIER: app.rately.Rately
+    PRODUCT_NAME: Rately
+    SWIFT_VERSION: "5.0"
+    CODE_SIGN_STYLE: Manual
+    ENABLE_HARDENED_RUNTIME: YES
+    COMBINE_HIDPI_IMAGES: YES
+targets:
+  Rately:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources
+      - path: Resources/Assets.xcassets
+      - path: Resources/AppIcon.icns
+    dependencies:
+      - package: RevenueCat
+    settings:
+      base:
+        INFOPLIST_FILE: Resources/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Resources/Rately.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        LSApplicationCategoryType: public.app-category.finance
+        ENABLE_HARDENED_RUNTIME: YES
